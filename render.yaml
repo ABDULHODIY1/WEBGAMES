@@ -1,14 +1,14 @@
 services:
   - type: web
-    name: gamehub-web
+    name: webgames
     env: python
     plan: free
     region: oregon
     buildCommand: |
-      cd gamehub
       pip install -r requirements.txt
       python manage.py collectstatic --noinput
-    startCommand: "gunicorn gamehub.wsgi --bind 0.0.0.0:$PORT"
+      python manage.py migrate
+    startCommand: gunicorn gamehub.wsgi:application --bind 0.0.0.0:$PORT
     envVars:
       - key: SECRET_KEY
         value: "django-insecure-h!@s)02w+3l^bbz8s*2%n+wasrjqv++o#u#rn+k-vudy8m&bxe"
