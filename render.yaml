@@ -5,6 +5,7 @@ services:
     plan: free
     region: oregon
     buildCommand: "pip install -r requirements.txt && python manage.py collectstatic --noinput"
+    buildCommand: "cd gamehub"
     startCommand: "gunicorn gamehub.wsgi --bind 0.0.0.0:$PORT"
     envVars:
       - key: SECRET_KEY
