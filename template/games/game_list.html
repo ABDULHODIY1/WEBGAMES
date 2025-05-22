@@ -1,0 +1,24 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>Game Gallery</title>
+    <link rel="stylesheet" href="{% static 'css/st.css' %}">
+</head>
+<body>
+    <div class="container">
+        <h1>O‘yinlar</h1>
+        <ul class="gam_cont">
+            {% for game in games %}
+                <li class="game_card">
+                    <a href="{% url 'game_detail' game.id %}">
+                        <img src="{{ game.cover_image.url }}" alt="{{ game.title }}">
+                        <h3>{{ game.title }}</h3>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</body>
+</html>
